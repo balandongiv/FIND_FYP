@@ -30,22 +30,9 @@
 % Package Loading
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Font settings with fontspec (use Tahoma from a local directory)
-
-\RequirePackage{fontspec}
-
-%%%%%   SETUP FONT AS TAHOMA
-\usepackage{fontspec}
-\setmainfont{Tahoma}[
-  Path = font/,
-  Extension = .ttf,
-  BoldFont = tahomabd,
-]
-
 
 % Support for utf8 input (for backwards compatibility)
 \RequirePackage[utf8]{inputenc}
-
 
 % Load additional packages required by the style
 \RequirePackage{tikz}
@@ -64,21 +51,26 @@
 \RequirePackage[pagewise]{lineno}
 \RequirePackage{csquotes}
 \RequirePackage[style=apa, backend=biber, natbib]{biblatex}
+\RequirePackage[titles]{tocloft} % Load tocloft first
+\usepackage[page,titletoc]{appendix}
+\RequirePackage{fontspec} % Required to load custom font, user can disable if prefer to use pdflatex
+\RequirePackage[final]{listofsymbols} % Then load listofsymbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font Settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Font settings with fontspec (use Tahoma from a local directory)
 
-%%%%%
-%%%%%   SETUP DOUBLESPACING
-%%%%%
-\RequirePackage{setspace}
-\RequirePackage{parskip}
-\usepackage[titles]{tocloft}
-\usepackage{ragged2e} % For full justification
-\usepackage{enumitem} % For controlling list formatting
+\setmainfont{Tahoma}[
+  Path = font/,
+  Extension = .ttf,
+  BoldFont = tahomabd,
+]
 
-
-
-%The following 3 lines are inserted to make the page for List of Abbreviations 
-\usepackage[final]{listofsymbols}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section Formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%The following 3 lines are inserted to make the page for List of Abbreviations
 \let\symbol\newsym
 \let\abbr\newsub
 
@@ -109,16 +101,15 @@
   \fi
 
 \marginparsep 0pt
-%\oddsidemargin 0.5in \evensidemargin 0in
-%\marginparwidth 40pt
 
-%\voffset 1in
-\setlength{\topmargin}{0in} %Added by Taj
+
+
+\setlength{\topmargin}{0in} 
 \headheight 0pt
 \headsep 0pt
 
 % Dimensions of the main text area on the page
-\textheight 9.4in 
+\textheight 9.4in
 \textwidth 5.77in
 
 
@@ -150,12 +141,12 @@
 %%%%%%%%%%% Margin Setup %%%%%%%%%%%%%%%
 
 
-% 6.6.4 Ukuran Bagi Halaman Pertama Setiap Bab Baru 
-% a. Jidar atas : 28 mm dari birai atas. 
-% b. Jidar kanan : 28 mm dari birai kanan. 
-% c. Jidar kiri : 38 mm dari birai kiri. 
-% d. Jidar bawah : 38 mm dari birai bawah. 
-% e. Halaman pertama bagi setiap bab tesis/disertasi hendaklah dikosongkan 28 mm di bahagian atas tajuknya. 
+% 6.6.4 Ukuran Bagi Halaman Pertama Setiap Bab Baru
+% a. Jidar atas : 28 mm dari birai atas.
+% b. Jidar kanan : 28 mm dari birai kanan.
+% c. Jidar kiri : 38 mm dari birai kiri.
+% d. Jidar bawah : 38 mm dari birai bawah.
+% e. Halaman pertama bagi setiap bab tesis/disertasi hendaklah dikosongkan 28 mm di bahagian atas tajuknya.
 
 
 \def\@makechapterhead#1{%
@@ -318,7 +309,7 @@
     \TitlePageFont{THIS REPORT IS SUBMITTED IN FULFILMENT OF THE REQUIREMENT FOR THE}\\[0.5ex]
     \TitlePageFont{BACHELOR’S DEGREE IN SCIENCE WITH HONORS}
     \vfill % Flexible space
-    
+
     % Third block: Faculty information (here combined with university name)
     \TitlePageFont{FACULTY OF SCIENCE AND NATURAL RESOURCES}\\[0.5ex]
     \TitlePageFont{UNIVERSITI MALAYSIA SABAH} \\[1ex]%
@@ -337,7 +328,7 @@
 % \topmargin 0in
 
 \def\pengesahantesis{%
-% \vspace*{1.3 in} %Added by Taj
+
 \setlength{\parindent}{0pt}
 
         \thispagestyle{empty}%
@@ -500,16 +491,10 @@ Date: & \rule[-0.5mm]{4in}{.4pt} \\
 %%%%%  DECLARATION OF THESIS
 %%%%%
 
-\usepackage{datetime} % For current date
-\usepackage{array}  % For vertical centering in tabular
-\usepackage{calc} % For calculating width of date
-
-% Format the date to "12 December 2021"
-\newdateformat{customdate}{\THEDAY\ \monthname[\THEMONTH]\ \THEYEAR}
 
 \def\declarationpage{%
 \thispagestyle{plain}  % Force bottom-centered page number
-\vspace*{-0.5 in} 
+\vspace*{-0.5 in}
         \begin{center}
 	 \textbf{DECLARATION OF THESIS}
  \end{center}
@@ -658,7 +643,7 @@ of \@degree.
 
 \def\testabstract{%
 \thispagestyle{plain}  % Force bottom-centered page number
-\vspace*{-0.3 in} 
+\vspace*{-0.3 in}
         \begin{center}
 	 \PrefaceFontSection{ABSTRACT}\\
      % \abstract{}
@@ -673,12 +658,12 @@ of \@degree.
 
 \def\abstractMalayu{%
 \thispagestyle{plain}  % Force bottom-centered page number
-\vspace*{-0.3 in} 
+\vspace*{-0.3 in}
     \begin{center}
 	    \AbstrakFont{ABSTRAK}\\[1em]  % Adjust spacing if needed
         \TitleMalayFont{\@TitleMalay}
     \end{center}
-    
+
     \begin{center}
         % \@abstractMalay  % Ensure the abstract text is centered
         \fontsize{11pt}{14pt}\selectfont{\@abstractMalay}
@@ -688,7 +673,7 @@ of \@degree.
 
 \def\Acknowledgment{%
 \thispagestyle{plain}  % Force bottom-centered page number
-\vspace*{-0.3 in} 
+\vspace*{-0.3 in}
         \begin{center}
 	 \PrefaceFontSection{ACKNOWLEDGMENT}\\
  \end{center}
@@ -714,14 +699,14 @@ of \@degree.
         	\pagestyle{plain}
         	\pagestyle{headings}
 %%
-       %%    
-       \addcontentsline{toc}{chapter}{TITLE} 
+       %%
+       \addcontentsline{toc}{chapter}{TITLE}
     \titlepage %PAGE 1 (Title Page now first)
     % \titlepage %PAGE 1 (Title Page now first)
     \addcontentsline{toc}{chapter}{PENGESAHAN STATUS TESIS} % WE DROP this for time being
     \pengesahantesis %PAGE 2 (Status Page now second)
-	
-	
+
+
     \addcontentsline{toc}{chapter}{DECLARATION OF THESIS}
 	\declarationpage %PAGE 4 (Declaration Page will be fourth)
     %%
@@ -731,7 +716,7 @@ of \@degree.
     \abstractMalayu
     \addcontentsline{toc}{chapter}{ABSTRAK}
     \Acknowledgment
-    
+
     \addcontentsline{toc}{chapter}{Acknowledgment}
     % For the time being, approval or certification by SV, CO-sv we ommit first since we develop this tex specifically for FYP student. But do de-comment in the future should you want to include it
 	% \approvalpage %PAGE 3 (Approval Page will be third, if defined)
@@ -745,10 +730,10 @@ of \@degree.
 \vspace*{1.1in}  % Ensures 28 mm space from the top
   \chapter*{\centering\fontsize{14}{16}\selectfont\textbf{\uppercase{#1}}}%
 }
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} %Added by Taj to fill chapter entries with dots
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} %to fill chapter entries with dots
 \renewcommand{\cftchapfont}{\fontsize{11}{13.6}\selectfont\textbf}  % In toc, we ensure, the text for chapter is make as bold
 
-\renewcommand{\cftchappagefont}{\normalsize\MakeUppercase} %Added by Taj to convert chapter to UPPERCASE
+\renewcommand{\cftchappagefont}{\normalsize\MakeUppercase} %to convert chapter to UPPERCASE
 \setlength{\cftbeforechapskip}{0ex}
 \setlength{\cftbeforesecskip}{0ex}
 \setlength{\cftbeforechapskip}{0ex}
@@ -756,7 +741,7 @@ of \@degree.
 
 \def\afterpreface{\newpage
 %\ifx \@currenvir appendices %\if@pptocpage \@pptocpagetrue %\ifx \@resets@pp %\defined %\@currenvir appendix
-\renewcommand{\cftchappresnum}{CHAPTER:}\renewcommand{\cftchapnumwidth}{25mm} %Added by Taj to include the word Chapter before any chapter entry in TOC
+\renewcommand{\cftchappresnum}{CHAPTER:}\renewcommand{\cftchapnumwidth}{25mm} % to include the word Chapter before any chapter entry in TOC
 
 \renewcommand\contentsname{\centering
 \vspace*{-1.1in}  % The lower the value the further it is from the top page
@@ -798,7 +783,7 @@ of \@degree.
 %Here is where we call the abbreviation file
 \newcommand{\NomenAndAbbr}{\input{./NomenclatureAbbreviations.tex}}
 \NomenAndAbbr
-%The following is added by Taj To include abbreviations
+%To include abbreviations
 \renewcommand{\subheading}{\chapter*{\vspace*{-1in}\subheadingname}}
 \renewcommand\subheadingname{\PrefaceFontSection\centering {LIST OF ABBREVIATIONS}}
 \clearpage
@@ -815,39 +800,12 @@ of \@degree.
         \pagestyle{plain}}
 
 
-\usepackage{tocloft}
-
-
-
-%%%%%
-%%%%%   Appendices Page
-%%%%%
-\usepackage[page,titletoc]{appendix}
-%\usepackage[toc,page,titletoc]{appendix}
-\renewcommand{\appendixtocname}{APPENDICES}
-\appendixpageoff %<-- uncomment this to hide Appendices page
-\renewcommand{\appendixpagename}{APPENDICES}
-\renewcommand{\appendixtocname}{APPENDICES}
-%\renewcommand{\appendixname}{\normalsize \normalfont \vspace{-0.5in}APPENDIX}
-
-\renewcommand{\appendixname}{APPENDIX}
-\appendixtocoff
-\appendixheaderoff
-\appendixtitletocoff
-
-
-% Start out normal
-\pagestyle{plain}
-% Start to enable during final version
-\renewcommand{\cfttabfont}{Table } % Do not change, To allow in TOC for text appear with Table 1.2 xxx
-\renewcommand{\cftfigfont}{Figure } % Do not change, To allow in TOC for text 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Line Numbers & Captions Setup
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage[pagewise]{lineno} % Ensure lineno is loaded with pagewise reset
 \renewcommand\thelinenumber{\arabic{linenumber}} % Ensure standard numbering format
 
 %% TODO. TO USE IF ELSE TO SET WHETHER TO ALLOW line or not
@@ -855,7 +813,7 @@ of \@degree.
 % \AtBeginDocument{%
 %     \linenumbers
 % }
-% % Enforce the figure caption to be bold and size 11pt 
+% % Enforce the figure caption to be bold and size 11pt
 % \RequirePackage{caption}
 % \captionsetup{font={bf,fontsize=11pt}, labelfont=bf}
 
@@ -864,10 +822,6 @@ of \@degree.
 % % Forcing table caption on top
 % \floatsetup[table]{capposition=top}
 
-\RequirePackage[open,openlevel=2]{bookmark} % Ensures bookmark package is loaded with desired options
-
-\RequirePackage{caption}
-\RequirePackage{floatrow} % Ensures floatrow package is loaded
 
 \captionsetup[table]{
     font={bf, normalsize}, % Bold, 11pt
@@ -891,8 +845,7 @@ of \@degree.
 % Bibliography Setup
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\RequirePackage{csquotes} % Ensure csquotes is loaded
-\RequirePackage[style=apa, backend=biber, natbib]{biblatex} % Load BibLaTeX
+
 \DeclareLanguageMapping{english}{american-apa}
 
 % Load the bibliography resource file
