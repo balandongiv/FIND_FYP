@@ -844,13 +844,13 @@ of \@degree.
 \setlength{\cftbeforechapskip}{0ex}
 \setlength{\cftbeforesecskip}{0ex}
 \setlength{\cftbeforechapskip}{0ex}
+
+
 \def\afterpreface{\newpage
 %\ifx \@currenvir appendices %\if@pptocpage \@pptocpagetrue %\ifx \@resets@pp %\defined %\@currenvir appendix
 \renewcommand{\cftchappresnum}{CHAPTER:}\renewcommand{\cftchapnumwidth}{25mm} %Added by Taj to include the word Chapter before any chapter entry in TOC
-%\else
-%    \renewcommand{\cftchappresnum}{}\renewcommand{\cftchapnumwidth}{1.5em} %Added by Taj to include
-%\fi
-\renewcommand\contentsname{\centering 
+
+\renewcommand\contentsname{\centering
 \vspace*{-1.1in}  % The lower the value the further it is from the top page
 \PrefaceFontSection{LIST OF CONTENTS}} % Bold and 14pt font size
 
@@ -858,7 +858,8 @@ of \@degree.
 % \renewcommand{\cftaftertoctitle}{%
 %   \hfill\textbf{Page}\par
 %   \vskip1ex}
-  \renewcommand{\cftaftertoctitle}{\textbf{Page}\\}
+  % \renewcommand{\cftaftertoctitle}{\textbf{Page}\\}
+\pagestyle{plain} % Add this line to set page style to plain before ToC
 \tableofcontents
 
 %%%%%
@@ -882,6 +883,7 @@ of \@degree.
         %   \renewcommand{\cfttabfont}{Figure }
            \listoffigures
                 \fi
+%\listofsymbolss
 %%%%%
 %%%%%   List of Abbreviations Page
 %%%%%
@@ -903,7 +905,6 @@ of \@degree.
 \clearpage%\clearemptydoublepage
         \pagenumbering{arabic}
         \pagestyle{plain}}
-\clearpage
 
 
 \usepackage{tocloft}
