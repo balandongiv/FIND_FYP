@@ -42,7 +42,7 @@ a4paper,
 
 
 \begin{document}
-\linenumbers % Please disable this for final printing, but for marking and drafting, or dicussion with your supervisor, enable this
+% \linenumbers % Please disable this for final printing, but for marking and drafting, or dicussion with your supervisor, enable this
 \include{chap0_FrontPage.tex}
 \include{chap0}
 \include{chap1} 
@@ -54,14 +54,13 @@ a4paper,
 
 \bibliographyAPA
 
-% \clearpage
 
+\appendix  %  <-- IMPORTANT:  Switch to appendix mode!
+% \include{APPENDICES}
+\appendixchapter{Supplementary Materials}  %  <-- Use \appendixchapter
 
-% \begin{singlespace}
-% 	\setstretch{1} % Adjust this value for bibliography readability
-% 	\smallskip
-% 	\printbibliography[heading=mybibheading, title=REFERENCES] % Print bibliography in APA style
-% \end{singlespace}
-% \addcontentsline{toc}{chapter}{biblio} 
-% \thesisbibliography % Insert the bibliography here -  If you have a separate thesis bibliography command, uncomment and adjust
+This is the first appendix.
+
+% \appendixsection{Detailed Data}  % <-- Use \appendixsection for sections
+
 \end{document}

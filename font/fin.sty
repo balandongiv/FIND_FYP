@@ -173,19 +173,30 @@
     \vskip 36pt  % Adjusted to simulate 3 Enter presses
   }}
 
+% \def\appendixchapter#1{%
+% % \newpage
+% % \cleardoublepage
+% % \vspace{2in}
+% \begin{center}
+% {APPENDIX \Alph{appendixcounter}}\\
+% \end{center}
+% \centering\normalsize\normalfont\uppercase{#1}
+%         	\chapter*{}
+%         	\addcontentsline{toc}{appendixcounter}{#1}
+% % \cleardoublepage
+% }
 \def\appendixchapter#1{%
-\newpage
-\cleardoublepage
-\vspace{2in}
-\begin{center}
-{APPENDIX \Alph{appendixcounter}}\\
-\end{center}
-\centering\normalsize\normalfont\uppercase{#1}
-        	\chapter*{}
-        	\addcontentsline{toc}{appendixcounter}{#1}
-\cleardoublepage
+    \clearpage
+    \refstepcounter{chapter}
+    \addcontentsline{toc}{chapter}{APPENDIX \Alph{chapter}: #1}
+    \chapter*{\centering
+        \vspace*{-30mm}  % 28mm from the top
+        {\fontsize{14pt}{16pt}\selectfont\bfseries\MakeUppercase{Appendix \Alph{chapter}}} % 14pt bold
+        \\
+        {\fontsize{11pt}{13pt}\selectfont\MakeUppercase{#1}} % 11pt title
+    }
+    \nobreak
 }
-
 
 % \@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
 %            optional * [ALTHEADING]{HEADING}
@@ -1009,5 +1020,3 @@ of \@degree.
     \end{singlespace}
     \addcontentsline{toc}{chapter}{BIBLIOGRAPHY} % Add to Table of Contents
 }
-
-
