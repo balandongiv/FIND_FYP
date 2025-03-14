@@ -66,8 +66,6 @@
 \RequirePackage[style=apa, backend=biber, natbib]{biblatex}
 
 
-% \setmainfont{Latin Modern Roman}
-% \setmainfont{Times New Roman}
 %%%%%
 %%%%%   SETUP DOUBLESPACING
 %%%%%
@@ -276,13 +274,8 @@
 \def\@mainsupervisor{}\def\@firstreader{*}\def\@secondreader{*}
 \def\@cosupervisora{*}
 \def\@cosupervisorb{*}
-% \def\@submitdate{\ifcase\the\month\or
-%  January\or February\or March\or April\or May\or June\or
-%  July\or August\or September\or October\or November\or December\fi
-%  \space \number\the\year}
  \def\@submitdate{\number\the\year}
-%Stanford says that Fall quarter theses should have the next year as the
-% copyright year
+
 
 \def\@copyrightyear{\number\the\year}
 \newif\ifcopyright \newif\iffigurespage \newif\iftablespage
@@ -388,7 +381,7 @@
 
 \par}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Please Edit: Rodney
+
 
 \vskip0.4cm
 \begin{tabular}{@{\vspace{-2mm}}l @{\vspace{-2mm}}l}
@@ -532,14 +525,7 @@ I \rlap{\rule[-0.5mm]{0.98\textwidth}{.4pt}\hss} \hspace{1in}\uppercase\expandaf
 		{0.8\baselineskip}
 I hereby declare that the content of this thesis is my own work, except for quotations, equations, summaries, and references, which have been appropriately acknowledged. Additionally, if Generative Artificial Intelligence has been used, its application and purpose have been transparently disclosed in the disclosure section below  \par}
 
-% \begin{center}
-%     \rule{\textwidth}{0.4pt} \\[3pt]
-%     \rule{\textwidth}{0.4pt} \\[3pt]
-%     \rule{\textwidth}{0.4pt} \\[3pt]
-%     \rule{\textwidth}{0.4pt} \\[3pt]
-%     \rule{\textwidth}{0.4pt}
-% \end{center}
-% \vspace{1cm}
+
 
 % Box to replace multiple \rule lines
 \noindent
@@ -561,97 +547,8 @@ I hereby declare that the content of this thesis is my own work, except for quot
 \newpage
 }
 
-% \usepackage{datetime} % For current date
-% \usepackage{array}  % For vertical centering in tabular
-% \usepackage{calc} % For calculating width of date
-% \usepackage{fbox} % For framing box
-% \usepackage{tcolorbox} % For creating the box
-
-% % Format the date to "12 December 2021"
-% \newdateformat{customdate}{\THEDAY\ \monthname[\THEMONTH]\ \THEYEAR}
-
-% % Define custom command \pengesahan for external declaration input
-% \newcommand{\pengesahan}[1]{%
-%     \begin{tcolorbox}[colframe=black, colback=white, width=\textwidth, boxrule=1pt]
-%         \centering \textbf{#1}
-%     \end{tcolorbox}
-% }
-
-% \def\declarationpage{%
-% \vspace*{0.5 in} %Added by Taj
-%         \begin{center}
-% 	 \textbf{DECLARATION OF THESIS}
-%  \end{center}
-% \vspace{0.5cm}
-% \begin{flushleft}
-% 	 \raisebox{0.5\parskip}{Title of thesis} \hspace{0.5cm}\framebox[11.5cm]{\parbox[c]{11cm}{%
-% \uppercase\expandafter{\@title}}} \par
-% \vspace{1cm}
-% I \rlap{\rule[-0.5mm]{0.98\textwidth}{.4pt}\hss} \hspace{1in}\uppercase\expandafter{\@author}
-% \end{flushleft}
-% \vskip 0.15in
-
-% {\setlength{\baselineskip}%
-% 		{0.8\baselineskip}
-% I hereby declare that the content of this thesis is my own work, except for quotations, equations, summaries, and references, which have been appropriately acknowledged. Additionally, if Generative Artificial Intelligence has been used, its application and purpose have been transparently disclosed in the disclosure section below. \par}
-
-% % Box to receive external declaration input
-% \vspace{1cm}
-% \pengesahan{\declarationtext}
-
-% \vskip1cm
-
-% \noindent
-% \begin{minipage}{\linewidth}
-%     \customdate\today \hfill \makebox[0pt][r]{\raisebox{0ex}{\authorsignature}}
-% \end{minipage}
-% \newpage
-% }
 
 
-
-% \usepackage{datetime} % For current date
-% \usepackage{array}  % For vertical centering in tabular
-% \usepackage{calc} % For calculating width of date
-% \usepackage{tcolorbox} % For creating the box
-
-% % Format the date to "12 December 2021"
-% \newdateformat{customdate}{\THEDAY\ \monthname[\THEMONTH]\ \THEYEAR}
-
-% % Define the command \declarationpage to accept a parameter
-% \newcommand{\declarationpage}[1]{%
-% \vspace*{0.5 in}
-%         \begin{center}
-% 	 \textbf{DECLARATION OF THESIS}
-%  \end{center}
-% \vspace{0.5cm}
-% \begin{flushleft}
-% 	 \raisebox{0.5\parskip}{Title of thesis} \hspace{0.5cm}\framebox[11.5cm]{\parbox[c]{11cm}{%
-% \uppercase\expandafter{\@title}}} \par
-% \vspace{1cm}
-% I \rlap{\rule[-0.5mm]{0.98\textwidth}{.4pt}\hss} \hspace{1in}\uppercase\expandafter{\@author}
-% \end{flushleft}
-% \vskip 0.15in
-
-% {\setlength{\baselineskip}%
-% 		{0.8\baselineskip}
-% I hereby declare that the content of this thesis is my own work, except for quotations, equations, summaries, and references, which have been appropriately acknowledged. Additionally, if Generative Artificial Intelligence has been used, its application and purpose have been transparently disclosed in the disclosure section below. \par}
-
-% % Box with the input text
-% \vspace{1cm}
-% \begin{tcolorbox}[colframe=black, colback=white, width=\textwidth, boxrule=1pt, sharp corners=south]
-%     \centering % Centers the text inside the box
-%     \textbf{#1} % Makes the text bold
-% \end{tcolorbox}
-
-% \vskip1cm
-
-% \noindent
-% \begin{minipage}{\linewidth}
-%     \customdate\today \hfill \makebox[0pt][r]{\raisebox{0ex}{\authorsignature}}
-% \end{minipage}
-% \newpage
-% }
 
 
 
@@ -770,7 +667,7 @@ of \@degree.
 \@abstract
 \vfill\newpage
 }
-
+% how there are other def after the abstractMalayu which will use the other default fon
 \newcommand\AbstrakFont{\fontsize{14pt}{16pt}\selectfont\bfseries}
 \newcommand\TitleMalayFont{\fontsize{11pt}{16pt}\selectfont\bfseries}
 
@@ -945,6 +842,11 @@ of \@degree.
 \renewcommand{\cfttabfont}{Table } % Do not change, To allow in TOC for text appear with Table 1.2 xxx
 \renewcommand{\cftfigfont}{Figure } % Do not change, To allow in TOC for text 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Line Numbers & Captions Setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \RequirePackage[pagewise]{lineno} % Ensure lineno is loaded with pagewise reset
 \renewcommand\thelinenumber{\arabic{linenumber}} % Ensure standard numbering format
 
@@ -985,9 +887,9 @@ of \@degree.
 }
 
 
-%% Setting for bib
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography Setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \RequirePackage{csquotes} % Ensure csquotes is loaded
 \RequirePackage[style=apa, backend=biber, natbib]{biblatex} % Load BibLaTeX
@@ -1020,3 +922,7 @@ of \@degree.
     \end{singlespace}
     \addcontentsline{toc}{chapter}{BIBLIOGRAPHY} % Add to Table of Contents
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% End of fin.sty
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
