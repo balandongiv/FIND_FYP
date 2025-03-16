@@ -57,7 +57,6 @@
 % Load listofsymbols with final option after tocloft
 \RequirePackage[final]{listofsymbols} % Load listofsymbols after tocloft
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Font Settings
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -242,6 +241,10 @@
 \def\@language{babel}                               % Language package (default babel)
 \def\advis@r{Supervisor}                           % Default advisor title
 
+\def\matricno#1{\gdef\@matricno{#1}}          % Matric Number
+% \def\field#1{\gdef\@field{#1}}                % Field of Study
+% \def\vivadate#1{\gdef\@vivadate{#1}}          % Viva Date
+% \def\degreex#1{\gdef\@degreex{#1}}          % Viva Date
 % Default definitions for title, author, department, supervisors, dates
 \def\@title{}
 \def\@author{}
@@ -328,7 +331,7 @@
         \vskip 0.10in
 
         {\setlength{\baselineskip}{0.7\baselineskip}
-            mengaku membenarkan tesis Sarjana ini disimpan di Perpustakaan Universiti Malaysia Sabah dengan syarat-syarat kegunaan seperti berikut: \par} % Declaration text
+            mengaku membenarkan laporan ini disimpan di Perpustakaan Universiti Malaysia Sabah dengan syarat-syarat kegunaan seperti berikut: \par} % Declaration text
 
         {\setlength{\baselineskip}{0.3\baselineskip}
             \begin{enumerate}
@@ -362,45 +365,61 @@
 }
 
 %%% --------------- Certification Page - Approval by Supervisor(s)
+% if a co-supervisor is not available, no row will be displayed for them
+%        |                          |        |        | Signature
+% 1      | MAIN SUPERVISOR          |        |        |
+%        | Dr. Smith                |        |        | ___________
+\RequirePackage{tabularx} % Ensures tables auto-adjust width
+\RequirePackage{array}    % Improves table column formatting
 \def\approvalpage{%
     \thispagestyle{empty}% No page numbers
     \null\vskip0.7in% Top vertical space
     \begin{center}
         \textbf{CERTIFICATION}\\ % Page title: CERTIFICATION
-        \uppercase\expandafter{\@title} % Thesis title in uppercase
+        
+        \vskip 0.05in
 
-        \vskip 0.05in
-        \normalfont by
-        \vskip 0.05in
-        \uppercase\expandafter{\@author}\\ % Author name in uppercase
-        \vskip0.25in
     \end{center}
+    \begin{tabularx}{\textwidth}{p{2cm} p{0.2cm} p{0.75\textwidth}} 
+    NAME & : & \textbf{\uppercase{\@author}} \\[0.5ex]
+    MATRIC NO  & : & \textbf{\uppercase{\@matricno}} \\[0.5ex]
+    TITLE & : & \textbf{\uppercase{\@title}} \\[0.5ex]
+    % DEGREE & : & \textbf{\uppercase{\@degreex} \\[0.5ex] % Cannot add degree in the table
+    
+    % FIELD & : & \textbf{\uppercase{\@field}} \\[0.5ex]
+    % VIVA DATE & : & \textbf{\uppercase{\@vivadate}} 
+\end{tabularx}
+
+     \begin{center}
+        \textbf{CERTIFIED BY}\\ % Page title: CERTIFICATION
+        
+        \vskip 0.05in
+
+    % \end{center}
+
     \begin{center}
-        \begin{flushleft}
-            The undersigned certify that they have read, and recommend to the Postgraduate Studies Programme for acceptance of this thesis for the fulfilment of the requirements for the degree stated. % Certification text
-        \end{flushleft}
+
 
         \vskip0.3in
 
         \begin{tabular*}{7.5in}{ll}
             Signature: &  \rule[-0.5mm]{4in}{.4pt}\\ % Signature line
-            Main Supervisor: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@mainsupervisor \vspace{0.5cm}\\ % Main supervisor signature & name
+            Main Supervisor: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@mainsupervisor \vspace{2cm}\\ % Main supervisor signature & name
             \if*\@cosupervisora \else % Co-supervisor A (conditional)
                 Signature: & \rule[-0.5mm]{4in}{.4pt} \\ % Signature line
-                Co-Supervisor: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@cosupervisora \vspace{0.5cm}\\ % Co-supervisor A signature & name
+                Co-Supervisor: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@cosupervisora \vspace{2cm}\\ % Co-supervisor A signature & name
             \fi
             \if*\@cosupervisorb \else % Co-supervisor B (conditional)
                 Signature: & \rule[-0.5mm]{4in}{.4pt} \\ % Signature line
-                Co-Supervisor: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@cosupervisorb \vspace{0.5cm}\\ % Co-supervisor B signature & name
+                Co-Supervisor: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@cosupervisorb \vspace{2cm}\\ % Co-supervisor B signature & name
             \fi
-            % Signature: & \rule[-0.5mm]{4in}{.4pt} \\ % Signature line
-            % Chair of Department: & \rlap{\rule[-0.5mm]{4in}{.4pt}}\@hod \vspace{0.5cm}\\ % Chair of Dept signature & name
-            Date: & \rule[-0.5mm]{4in}{.4pt} \\ % Date line
+            % Date: & \rule[-0.5mm]{4in}{.4pt} \\ % Date line
         \end{tabular*}
     \end{center}
     \vfill
     \newpage
 }
+
 
 %%%%%
 %%%%%  DECLARATION OF THESIS - Author's Declaration
@@ -436,7 +455,7 @@
 
     \noindent
     \begin{minipage}{\linewidth}
-        \customdate\today \hfill \makebox[0pt][r]{\raisebox{0ex}{\authorsignature}} % Date and Author signature
+        \today \hfill \makebox[0pt][r]{\raisebox{0ex}{\authorsignature}} % Date and Author signature
     \end{minipage}
     \newpage
 }
@@ -448,7 +467,7 @@
         \vspace{\signaturespace}
         \shortstack[l]{\rule[-0.5mm]{2.5in}{.4pt}\\
             \@author} \\ % Author name
-        Matric No: \\ % Matric number label
+        Matric No: \@matricno\\ % Matric number label
     \end{minipage}
 }
 
@@ -492,39 +511,6 @@
         \end{minipage}
     \end{flushright}}
 
-\long\def\ucgssignature{%
-    \begin{flushright}
-        \begin{minipage}{5in}
-            \parindent=0pt
-            \hfill Approved for the University Committee on Graduate Studies % Approval statement
-            \par
-            \vspace{\signaturespace}
-            \hbox to 5in{\hfil\begin{tabular}{@{}l@{}}\vrule width 3in height
-                        0.4pt depth 0pt\end{tabular}} % Signature line
-        \end{minipage}
-    \end{flushright}
-    \setlength{\parindent}{\myparagraphindent}} % Reset paragraph indent
-
-\def\signaturepage{%
-    \parindent=0pt
-    I certify that I have read this dissertation and that, in my opinion,
-    it is fully adequate in scope and quality as a dissertation for the degree
-    of \@degree. % Certification statement
-    \par
-    \signature{(\@mainsupervisor)\\ Main \advis@r} % Main supervisor signature
-    \vfill
-    % Co-supervisor signatures (conditional)
-    \if*\@cosupervisora \else
-        \signature{(\@cosupervisora)\\ Co-\advis@r}
-        \vfill\fi
-    \if*\@cosupervisorb \else
-        \signature{(\@cosupervisorb)\\ Co-\advis@r}
-        \vfill\fi
-    \ucgssignature % University Committee signature
-    \vfill\newpage
-    \parindent=
-    \setlength{\parindent}{\myparagraphindent}} % Reset paragraph indent
-
 
 %------------------------------
 % Abstract Page (English)
@@ -536,7 +522,10 @@
     \begin{center}
         \PrefaceFontSection{ABSTRACT}\\ % "ABSTRACT" heading
     \end{center}
-    \@abstract % Abstract text
+    \noindent % Ensure no indentation at the start
+    \begin{flushleft} % Enforce left alignment (justification may depend on surrounding document)
+        \@abstract
+    \end{flushleft}
     \vfill\newpage
 }
 
@@ -598,8 +587,9 @@
     \declarationpage     % PAGE 3: Declaration Page
     \addcontentsline{toc}{chapter}{DECLARATION OF THESIS} % Add Declaration to TOC
 
-    \approvalpage       % PAGE 4: Approval Page (Certification)
-    \addcontentsline{toc}{chapter}{APPROVAL PAGE} % Add Approval Page to TOC
+    %% We skip this unless required
+    % \approvalpage       % PAGE 4: Approval Page (Certification)
+    % \addcontentsline{toc}{chapter}{APPROVAL PAGE} % Add Approval Page to TOC
 
     \testabstract       % PAGE 5: Abstract (English)
     \addcontentsline{toc}{chapter}{ABSTRACT} % Add Abstract (English) to TOC

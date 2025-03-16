@@ -9,40 +9,19 @@ a4paper,
 
 
 \usepackage{font/fin} %<- Contains all formatting stuff that require by UMS! 
-
+% \usepackage{layout}
 % Start graphic package
 \usepackage{graphicx}
 \newcommand{\plus}{\raisebox{.4\height}{\scalebox{.6}{+}}}
 \graphicspath{ {./images/} }
 
 
-% APA citation settings
-% \usepackage{csquotes} % Recommended for biblatex with APA style
-% \usepackage[style=apa, backend=biber, natbib]{biblatex}
-% \DeclareLanguageMapping{english}{american-apa}
-% \addbibresource{BibThesis.bib} % Link to your .bib file
-
-% \usepackage{url}
-% \usepackage{hyperref} % Ensure hyperref is loaded
-
-
-
-% \usepackage[open,openlevel=2]{bookmark}
-
 \hyphenation{applicability}
-
-% Customize bibliography heading
-% \defbibheading{mybibheading}[\bibname]{%
-%   \centering
-%   \fontsize{14pt}{16.8pt}\selectfont % 14pt font size with 1.2 line spacing
-%   \textbf{#1} % Bold the heading title (#1 is \bibname, which is "References")
-%   \par % Ensure a new paragraph after the heading
-%   \vspace{\bibitemsep} % Add vertical space after the heading (optional, adjust as needed)
-% }
-
+% \usepackage{showframe}
 
 \begin{document}
-% \linenumbers % Please disable this for final printing, but for marking and drafting, or dicussion with your supervisor, enable this
+
+\linenumbers % Please disable this for final printing, but for marking and drafting, or dicussion with your supervisor, enable this
 \include{chap0_FrontPage.tex}
 \include{chap0}
 \include{chap1} 
